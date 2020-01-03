@@ -1,0 +1,70 @@
+{
+    "basemap": [{
+
+        "src" : "<%= path %>/assets/zone3.png",
+
+        "image_width" : 2000,
+
+        "image_height" : 2198,
+
+        "north_west" : [151.84341430664065,-31.483722267336216],
+
+        "south_east" : [153.21670532226565,-32.76071688548088]
+    },{
+
+        "src" : "<%= path %>/assets/zone4.png",
+
+        "image_width" : 2000,
+
+        "image_height" : 1973,
+
+        "north_west" : [151.08673095703128,-32.370102922093395],
+
+        "south_east" : [152.46002197265628,-33.50704924881553]
+    },{
+
+        "src" : "<%= path %>/assets/zone5.png",
+
+        "image_width" : 2000,
+
+        "image_height" : 2808,
+
+        "north_west" : [150.6431579589844,-32.90553280620373],
+
+        "south_east" : [152.0164489746094,-34.509385763804225]
+    },{
+
+        "src" : "<%= path %>/assets/zone6.png",
+
+        "image_width" : 2000,
+
+        "image_height" : 2840,
+
+        "north_west" : [150.23529052734378,-33.6734971019131],
+
+        "south_east" : [151.60858154296878,-35.28598473606575]
+    },{
+
+        "src" : "<%= path %>/assets/zone6.png",
+
+        "image_width" : 2000,
+
+        "image_height" : 2840,
+
+        "north_west" : [150.23529052734378,-33.6734971019131],
+
+        "south_east" : [151.60858154296878,-35.28598473606575]
+    },{
+
+        "src" : "<%= path %>/assets/zone8.png",
+
+        "image_width" : 2000,
+
+        "image_height" : 3124,
+
+        "north_west" : [149.31037902832034,-35.882930670625086],
+
+        "south_east" : [150.68367004394534,-37.601176236566666]
+    }]
+}
+
