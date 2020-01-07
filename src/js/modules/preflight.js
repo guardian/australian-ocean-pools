@@ -2,15 +2,13 @@ import * as turf from '@turf/turf' //jspm install npm:@turf/turf
 
 export class Preflight {
 
-	constructor(data, key, settings, places, routes) {
+	constructor(data, key, settings, places, centred, offset, land) {
 
 		var self = this
 
 		this.googledoc = data
 
         this.places = places
-
-        this.routes = routes
 
         this.settings = settings 
 
@@ -46,7 +44,13 @@ export class Preflight {
 
         this.settings.zoom = (self.settings.screenWidth < 600) ? 3 : (self.settings.screenWidth < 800) ? 4 : 5 ;
 
-        this.settings.singleColumn = (self.settings.screenWidth < 600) ? true : false ;
+        this.settings.singleColumn = (self.settings.screenWidth < 740) ? true : false ;
+
+        this.settings.offset = 0 //(this.settings.singleColumn) ? 0 : this.settings.screenWidth / 4 ;
+
+        this.routes = (this.settings.singleColumn) ? centred : offset ;
+
+        this.land = land
 
 	}
 
@@ -157,7 +161,7 @@ export class Preflight {
         //var translatedPoly = turf.transformTranslate(poly, 100, 35)
 
 
-        return { records : matrix, settings : self.settings, places : self.places, routes : self.routes }
+        return { records : matrix, settings : self.settings, places : self.places, routes : self.routes, land : self.land }
 
     }
 

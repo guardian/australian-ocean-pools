@@ -1,3 +1,5 @@
+@import "mq";
+
 .scroll-wrapper {
     @include mq(tablet) {
         width: 740px;
@@ -59,16 +61,11 @@
     pointer-events: none;
 }
 
-
-
 .scroll-text__inner {
     box-sizing: border-box;
-    height: 100vh;
+    height: 120vh;
     position: relative;
     z-index: 100;
-
-
-
 
     .transparent-until-active & {
         opacity: 0.25;

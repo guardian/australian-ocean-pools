@@ -3,7 +3,9 @@ import { Ocean } from './modules/ocean'
 import places from './data/places.json'
 import { Preflight } from './modules/preflight'
 import settings from './data/settings'
-import routes from './data/routes_offset.json'
+import centred from './data/routes.json'
+import offset from './data/routes_offset.json'
+import land from './data/geo.json'
 
 var app = {
 
@@ -12,7 +14,7 @@ var app = {
 		loadJson(`https://interactive.guim.co.uk/docsdata/${key}.json`)
 			.then((data) => {
 
-				var wrangle = new Preflight(data.sheets.Data, key, settings, places, routes)
+				var wrangle = new Preflight(data.sheets.Data, key, settings, places, centred, offset, land)
 
 				wrangle.process().then( (application) => {
 
@@ -21,12 +23,7 @@ var app = {
 				})
 				
 			})
-
-
 	}
-
 }
 
 app.init("1JKBWoq8AJD260VzwmPvgPeF2p5pdNW1dhzePDXe1nb8")
-
-// https://interactive.guim.co.uk/docsdata/1JKBWoq8AJD260VzwmPvgPeF2p5pdNW1dhzePDXe1nb8.json

@@ -1,5 +1,17 @@
 const lazyloader = (function() {
 
+  var screenwidth = document.documentElement.clientWidth
+
+  function setDirectory(width) {
+
+      return (width < 401) ? 400 : 
+      (width < 601) ? 600 : 
+      (width < 801) ? 800 : 1000 ;
+
+  }
+
+  var folder = setDirectory(screenwidth)
+
     const config = {
 
       rootMargin: '0px 0px 550px 0px',
@@ -14,9 +26,7 @@ const lazyloader = (function() {
 
         if (entry.isIntersecting) {
 
-          entry.target.src = `https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/images/1000/${entry.target.getAttribute('data-lazy')}`
-
-          console.log("Troigger now")
+          entry.target.src = `https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/images/${folder}/${entry.target.getAttribute('data-lazy')}`
 
           exit.unobserve(entry.target);
 

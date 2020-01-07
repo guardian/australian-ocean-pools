@@ -6,7 +6,7 @@
 
             <div class="video-container">
                 <video class="uit-video uit-desktop" playsinline muted loop>
-                <source src="https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/videos/intro_960.mp4" type="video/mp4">
+                <source src="<%= path %>/assets/threepools-berma,bronte,bogey.mp4" type="video/mp4">
                 </video>
 
                 <!-- poster="https://interactive.guim.co.uk/uploader/embed/2019/09/amazon_poster_images-zip/giv-3902GnCtyH8vsL3L/desktop.jpg" -->
@@ -17,11 +17,13 @@
                 <div class="int-tag">
                     Coastal heritage
                 </div>
+                
                 <div class="headline-wrapper">
-                    <h1>A survey of ocean pools along the New South Wales coast</h1>
+                    <h1>Making shore: Chronicling New South Wales' magnificent ocean pools</h1>
                 </div>
+
                 <p class="standfirst">
-                    <span>Sydney based architect Nicole Larkin has travelled up and down the coastline of NSW documenting theocean pools scattered along its varied shoreline. Guardian Australia has mapped all the pools she has recored on her seaboard wanderings.</span>
+                    <span>For five years, Nicole Larkin has been documenting New South Wales' unique abundance of coastal pools. Guardian Australia has mapped the Sydney-based architect's efforts, revealing sites of human ingenuity, and natural beauty</span>
                 </p>
 
             </div>
@@ -29,6 +31,7 @@
             <div class="img-credit-header"></div>
 
         </div>
+
     </div>
 
     <div id="scrolly-1">
@@ -36,22 +39,30 @@
         <div class="scroll-wrapper">
 
             <div class="scroll-inner">
-                <div id="map"></div>
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
             </div>
 
             <div class="scroll-text">
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="11" data-map="0"></div>
-
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="11" data-map="0">
-                    <div class="intro-text__div">
+                <div class="scroll-text__inner" data-track="0" data-pool="0" data-type="static" data-zoom="11" data-map="0">
+                    <div class="byline-text__div">
                         <div class="intro-showcase">
-                            <p><span class="firstcharacter">O</span>ur journey begins in the Clarence Valley on the northern stretch of the New South Wales coast at the town of Yamba. From there we head southward eventually making our way to the Bega Valley Shire some 1000km away. All of the 59 pools that we have presented here are still actively in use today. Many were built as public works projects during the depression. Most were ingeniously constructed by exploiting some natural topographic feature of the local area. All of them have become a focal point within their coastal communities.</p>
+                       <div class="int-byline"><a href="">Nicole Larkin</a>, <a href='https://www.theguardian.com/profile/hannah-izzard'>Hannah Izzard<a>, <a href='https://www.theguardian.com/profile/alyx-gorman'>Alyx Gorman</a>, <a href='https://www.theguardian.com/profile/andy-ball'>Andy Ball</a>, and <a href='https://www.theguardian.com/profile/nick-evershed'>Nick Evershed</a></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="11" data-map="0">
+                <div class="scroll-text__inner" data-track="0" data-pool="0" data-type="static" data-zoom="11" data-map="0">
+                    <div class="intro-text__div">
+                        <div class="intro-showcase">
+                            <p><span class="firstcharacter">W</span>e start on the southern edge of a small, curved beach in the Clarence Valley region. Overlooked by green hills and 112-year-old surf life saving club, Yamba ocean pool is the northernmost in the state. The chain of 59 pools that follow stretches 1000km south, to Bermagui in the Bega Valley Shire. Cleverly constructed to exploit natural rock platforms, these pools feel intimately connected to their natural environments, with unconstructed edges, lapping waves, sandy bottoms or their own marine ecosystems. Many were constructed during the depression, and all the pools featured here remain vital public amenities to this day. Providing both access to, and shelter from the ocean, they are places of celebration, community and play. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scroll-text__inner" data-track="0" data-pool="1" data-type="explore" data-zoom="11" data-map="0">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Yamba ocean pool</p>
@@ -60,7 +71,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="11" data-map="0">
+                <div class="scroll-text__inner" data-track="0" data-pool="2" data-type="explore" data-zoom="11" data-map="0">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Angourie blue pool</p>
@@ -69,9 +80,11 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="11" data-map="0"></div>
+                <div class="scroll-text__inner" data-track="1" data-pool="0" data-type="static" data-zoom="11" data-map="0"></div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="0">
+                <div class="scroll-text__inner" data-track="1" data-pool="0" data-type="scroll" data-zoom="11" data-map="0"></div>
+
+                <div class="scroll-text__inner" data-track="1" data-pool="0" data-type="scroll" data-zoom="11" data-map="0">
                     <div class="video-header-wrapper">
                         <video id="video" loop="true" muted>
                             <source src="https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/videos/sawtell.mp4" type="video/mp4">   
@@ -79,9 +92,9 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="0"></div>
+                <div class="scroll-text__inner" data-track="1" data-pool="0" data-type="scroll" data-zoom="11" data-map="0"></div>
                 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="0">
+                <div class="scroll-text__inner" data-track="1" data-pool="3" data-type="scroll" data-zoom="11" data-map="0">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Sawtell Memorial Rock pool in Coffs Harbour</p>
@@ -90,11 +103,11 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="0"></div>
+                <div class="scroll-text__inner" data-track="2" data-pool="0" data-type="scroll" data-zoom="11" data-map="0"></div>
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="11" data-map="1"></div>
+                <div class="scroll-text__inner" data-track="2" data-pool="0" data-type="scroll" data-zoom="11" data-map="1"></div>
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="11" data-map="1">
+                <div class="scroll-text__inner" data-track="3" data-pool="4" data-type="static" data-zoom="11" data-map="1">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Black Head Ocean pool</p>
@@ -103,7 +116,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="11" data-map="1">
+                <div class="scroll-text__inner" data-track="3" data-pool="5" data-type="static" data-zoom="11" data-map="1">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Forster Ocean pool</p>
@@ -112,13 +125,19 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="11" data-map="1"></div>
+                <div class="scroll-text__inner" data-track="4" data-pool="0" data-type="scroll" data-zoom="11" data-map="1"></div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="1"></div>
+                <div class="scroll-text__inner" data-track="4" data-pool="0" data-type="scroll" data-zoom="11" data-map="0">
+                    <div class="video-header-wrapper">
+                        <video id="video" loop="true" muted>
+                            <source src="https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/videos/sawtell.mp4" type="video/mp4">   
+                        </video>
+                    </div>
+                </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="1"></div>
+                <div class="scroll-text__inner" data-track="4" data-pool="0" data-type="scroll" data-zoom="11" data-map="1"></div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="1">
+                <div class="scroll-text__inner" data-track="5" data-pool="6" data-type="scroll" data-zoom="11" data-map="1">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Newcastle Ocean Baths</p>
@@ -127,7 +146,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="1">
+                <div class="scroll-text__inner" data-track="5" data-pool="7" data-type="scroll" data-zoom="11" data-map="1">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Bogey Hole</p>
@@ -136,7 +155,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="1">
+                <div class="scroll-text__inner" data-track="5" data-pool="8" data-type="scroll" data-zoom="11" data-map="1">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Merewether Ocean Baths</p>
@@ -145,9 +164,9 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="1"></div>
+                <div class="scroll-text__inner" data-track="5" data-pool="0" data-type="scroll" data-zoom="11" data-map="1"></div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="1">
+                <div class="scroll-text__inner" data-track="5" data-pool="9" data-type="scroll" data-zoom="11" data-map="1">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>The Entrance Ocean Baths</p>
@@ -156,7 +175,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="1">
+                <div class="scroll-text__inner" data-track="5" data-pool="10" data-type="scroll" data-zoom="11" data-map="1">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Terrigal Rock pool</p>
@@ -165,7 +184,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="1">
+                <div class="scroll-text__inner" data-track="5" data-pool="11" data-type="scroll" data-zoom="11" data-map="1">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Macmasters Beach Rock pool</p>
@@ -174,11 +193,11 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="1"></div>
+                <div class="scroll-text__inner" data-track="6" data-pool="0" data-type="scroll" data-zoom="11" data-map="1"></div>
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="12" data-map="2"></div>
+                <div class="scroll-text__inner" data-track="6" data-pool="0" data-type="scroll" data-zoom="12" data-map="2"></div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="12" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Pearl Beach Rock pool</p>
@@ -187,7 +206,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="13" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Palm Beach</p>
@@ -196,9 +215,9 @@
                     </div>
                 </div>
 
-                <!--div class="scroll-text__inner" data-type="reorient" data-zoom="12" data-map="2"></div-->
+                <!--div class="scroll-text__inner" data-track="0" data-pool="0" data-type="static" data-zoom="12" data-map="2"></div-->
                 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="14" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Whale Beach Rock pool</p>
@@ -207,7 +226,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="15" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Avalon Rock pool</p>
@@ -216,7 +235,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="16" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Bilgola Baths</p>
@@ -225,7 +244,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="17" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Newport Ocean pool</p>
@@ -234,7 +253,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="18" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Mona Vale Rock pool</p>
@@ -243,7 +262,7 @@
                     </div>
                 </div>
                 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="19" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>North Narrabeen Baths</p>
@@ -252,7 +271,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="20" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Collaroy Ocean pool</p>
@@ -261,7 +280,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="21" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Dee Why Rock pool</p>
@@ -270,7 +289,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="22" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>North Curl Curl Rock pool</p>
@@ -279,7 +298,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="23" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>South Curl Curl Rock pool</p>
@@ -288,7 +307,7 @@
                     </div>
                 </div>
                 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="24" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Freshwater Ocean pool</p>
@@ -297,7 +316,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="25" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Queenscliff Ocean pool</p>
@@ -306,34 +325,44 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="26" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
-                            <p>North Steyne pool</p>
+                            <p>Manly Fairy Bower Pool</p>
                             <img data-lazy="26.jpg">
                         </div>
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+
+                <div class="scroll-text__inner" data-track="7" data-pool="27" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
-                            <p>Wally Weekes pool</p>
+                            <p>North Steyne pool</p>
                             <img data-lazy="27.jpg">
                         </div>
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="28" data-type="scroll" data-zoom="12" data-map="2">
+                    <div class="scroll-text__div">
+                        <div class="editorial-showcase">
+                            <p>Wally Weekes pool</p>
+                            <img data-lazy="28.jpg">
+                        </div>
+                    </div>
+                </div>
+
+                <!--div class="scroll-text__inner" data-track="7" data-pool="29" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Bondi kids pool</p>
                             <img data-lazy="29.jpg">
                         </div>
                     </div>
-                </div>
+                </div-->
                 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="29" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Icebergs</p>
@@ -342,7 +371,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="30" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Bronte Baths</p>
@@ -351,7 +380,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="31" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Giles Baths</p>
@@ -360,7 +389,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="32" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Ross Jones Memorial pool</p>
@@ -369,7 +398,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="33" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>McIvers Baths</p>
@@ -378,7 +407,7 @@
                     </div>
                 </div>
                 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="34" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Wylie's Baths</p>
@@ -387,7 +416,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="35" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Ivor Rowe Rockpool</p>
@@ -396,7 +425,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="2">
+                <div class="scroll-text__inner" data-track="7" data-pool="36" data-type="scroll" data-zoom="12" data-map="2">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Mahon pool</p>
@@ -405,7 +434,11 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="8" data-pool="37" data-type="scroll" data-zoom="12" data-map="3"></div>
+
+                <div class="scroll-text__inner" data-track="8" data-pool="37" data-type="scroll" data-zoom="12" data-map="3"></div>
+
+                <div class="scroll-text__inner" data-track="9" data-pool="37" data-type="static" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Malabar Ocean pool</p>
@@ -414,7 +447,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="38" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Cronulla Rock pool One</p>
@@ -423,7 +456,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="39" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Cronulla Rock pool Two</p>
@@ -432,7 +465,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="40" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Shelly Beach pool</p>
@@ -441,7 +474,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="41" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Oak Park pool</p>
@@ -450,7 +483,15 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="0" data-type="scroll" data-zoom="11" data-map="0">
+                    <div class="video-header-wrapper">
+                        <video id="video" loop="true" muted>
+                            <source src="https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/videos/sawtell.mp4" type="video/mp4">   
+                        </video>
+                    </div>
+                </div>
+
+                <div class="scroll-text__inner" data-track="9" data-pool="42" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Bulgo Beach pool</p>
@@ -459,7 +500,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="43" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Coalcliff Baths</p>
@@ -468,7 +509,7 @@
                     </div>
                 </div>
                 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="44" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Wombarra Baths</p>
@@ -477,7 +518,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="45" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Coledale Baths</p>
@@ -486,7 +527,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="46" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Austinmer Baths</p>
@@ -495,7 +536,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="47" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Bulli Ocean Bath</p>
@@ -504,7 +545,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="48" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Woonona Baths</p>
@@ -513,7 +554,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="49" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Bellambi Baths</p>
@@ -522,7 +563,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="50" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Towradgi Ocean pool</p>
@@ -531,7 +572,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="51" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Nuns pool</p>
@@ -540,7 +581,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="52" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Ladies Baths</p>
@@ -549,7 +590,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="53" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Fishermans Beach Baths (Port Kembla</p>
@@ -558,7 +599,7 @@
                     </div>
                 </div>
                 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="54" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Pheasant Point Baths</p>
@@ -567,7 +608,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="55" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Blowhole Point Baths</p>
@@ -576,7 +617,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="56" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Werri Beach Baths</p>
@@ -585,7 +626,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3">
+                <div class="scroll-text__inner" data-track="9" data-pool="57" data-type="scroll" data-zoom="12" data-map="3">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Boat Harbour Baths</p>
@@ -594,9 +635,11 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="12" data-map="3"></div>
+                <div class="scroll-text__inner" data-track="10" data-pool="0" data-type="scroll" data-zoom="12" data-map="3"></div>
 
-                <div class="scroll-text__inner" data-type="reorient" data-zoom="11" data-map="4">
+                 <div class="scroll-text__inner" data-track="10" data-pool="0" data-type="scroll" data-zoom="12" data-map="3"></div>
+
+                <div class="scroll-text__inner" data-track="11" data-pool="58" data-type="scroll" data-zoom="11" data-map="4">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Bermagui - Blue pool</p>
@@ -605,7 +648,7 @@
                     </div>
                 </div>
 
-                <div class="scroll-text__inner" data-type="explore" data-zoom="11" data-map="4">
+                <div class="scroll-text__inner" data-track="11" data-pool="59" data-type="scroll" data-zoom="11" data-map="4">
                     <div class="scroll-text__div">
                         <div class="editorial-showcase">
                             <p>Eden Rock pool</p>

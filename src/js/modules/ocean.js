@@ -1,16 +1,11 @@
 import ScrollyTeller from "../modules/scrollyteller"
-import { $, $$, wait, getDimensions } from "../modules/util"
-//import * as d3 from 'd3'
 import * as turf from '@turf/turf' // npm:@turf/turf
-import { Reprojection } from './reprojection'
-
-import GoogleMapsLoader from 'google-maps';
-import mapstyles from '../modules/bluetones.json'
 import L from 'leaflet'
-import '../modules/Leaflet.GoogleMutant.js'
 import '../modules/L.CanvasOverlay.js'
 import '../modules/lazyloader.js'
 import '../modules/videoInview.js'
+import { clamp, interpolate, easing } from '../modules//math2'
+import * as topojson from "topojson"
 
 export class Ocean {
 
@@ -20,13 +15,11 @@ export class Ocean {
 
         this.database = database
 
-        this.posistion = 0
-
-        this.currentBasemap = 0
-
         this.requestAnimationFrame = null;
 
-        this.zoom = 12
+        this.currentPool = 1
+
+        this.currentTrigger = { base: 0 , scroll : false , zoom : 12 , track: 0 }
 
         this.triggers = []
 
@@ -46,7 +39,11 @@ export class Ocean {
 
             obj.id = id
 
-            obj.type = trigger.getAttribute('data-type')
+            obj.track = +trigger.getAttribute('data-track')
+
+            obj.pool = +trigger.getAttribute('data-pool')
+
+            obj.scroll = (trigger.getAttribute('data-type')==='scroll') ? true : false ;
 
             obj.zoom = +trigger.getAttribute('data-zoom')
 
@@ -58,53 +55,7 @@ export class Ocean {
 
         });
 
-        //this.basemap()
-
-        this.googleizer()
-
-    }
-
-    basemap() {
-
-        var self = this
-
-        var loaded = []
-
-        for (const basemap of this.database.settings.basemap) {
-
-            basemap.projection = new Reprojection(basemap.image_width, basemap.image_height, self.database.settings.screenWidth, self.database.settings.screenHeight, basemap.north_west[0], basemap.south_east[0], basemap.south_east[1])
-
-            basemap.image = new Image()
-
-            basemap.image.src = basemap.src
-
-            basemap.image.onload = (e) => {
-
-                loaded.push(basemap.image_width)
-
-                if (loaded.length === self.database.settings.basemap.length) {
-
-                    // self.initMap()
-
-                    self.googleizer()
-
-                }
-                
-            };
-
-        }
-
-    }
-
-    googleizer() {
-
-        var self = this
-
-        GoogleMapsLoader.KEY = 'AIzaSyD8Op4vGvy_plVVJGjuC5r0ZbqmmoTOmKk';
-        GoogleMapsLoader.REGION = 'AU';
-        GoogleMapsLoader.load(function(google) {
-            self.initMap()
-        });
+        self.initMap()
 
     }
 
@@ -115,17 +66,26 @@ export class Ocean {
         this.map = new L.Map('map', { 
             renderer: L.canvas(),
             center: new L.LatLng(self.database.records[0].latitude, self.database.records[0].longitude), 
-            zoom: self.zoom,
+            zoom: self.currentTrigger.zoom,
             scrollWheelZoom: false,
             dragging: false,
             zoomControl: false,
             doubleClickZoom: false,
-            zoomAnimation: true
+            zoomAnimation: true,
+            tap: false
         })
-        
-        var styled = L.gridLayer.googleMutant({
 
-            styles: mapstyles
+        var boundaryStyle = {
+            "fillColor": "#2e5da1",
+            "color": "#2e5da1",
+            "weight": 1,
+            "fillOpacity": 1,
+            "opacity": 1
+        };
+
+        this.boundary = L.geoJSON(self.database.land, {
+
+          style: boundaryStyle
 
         }).addTo(self.map);
 
@@ -133,6 +93,18 @@ export class Ocean {
 
     }
 
+    setCompositeOperation(ctx, mode='source-over', fallback=null) {
+      ctx.globalCompositeOperation = mode
+      let worked=(ctx.globalCompositeOperation == mode)
+      if(!worked && fallback!=null)
+        ctx.globalCompositeOperation=fallback
+      return worked
+    }
+
+    getAngle(x,y,xx,yy) {
+        return Math.atan2(y-yy,x-xx)
+    }
+        
     setupCanvas() {
 
         var self = this
@@ -156,6 +128,8 @@ export class Ocean {
 
             this.setData = function (data={}) {
 
+                console.log(data.status)
+
                 this.needRedraw();
 
             };
@@ -171,6 +145,8 @@ export class Ocean {
                 options  : <options passed >
                 */
 
+                //console.log(params)
+
                 //var dot = self.map.latLngToContainerPoint([d[0], d[1]]);
 
                 var ctx = params.canvas.getContext('2d');
@@ -185,22 +161,74 @@ export class Ocean {
 
                 ctx.clearRect(0, 0, params.size.x, params.size.y);
 
-                // self.database.settings.basemap[self.currentBasemap].projection.drawMap(ctx, self.database.settings.basemap[self.currentBasemap].image, nw, se)
+                var element = document.querySelectorAll('[data-lazy]')[self.currentPool - 1]
+
+                var elementTop = window.pageYOffset + element.getBoundingClientRect().top
+
+                var elementLeft = element.getBoundingClientRect().left
+
+                var elementBottom = window.pageYOffset + element.getBoundingClientRect().bottom
+
+                let halfWindowHeight = window.innerHeight / 2
+
+                let falloff = halfWindowHeight * 0.9
+
+                const PI = Math.PI
+                            
+                const PI2 = PI * 2
 
                 for (const record of self.database.records) {
+
                     var centre = self.map.latLngToContainerPoint([record.latitude, record.longitude]);
-                    ctx.beginPath();
-                    ctx.save();
+
+                    if (centre.y > 0 && centre.y < window.innerHeight && +record.id === self.currentPool) {
+
+                        if (elementTop > (window.pageYOffset) && elementBottom < ( window.pageYOffset + window.innerHeight) && !self.database.settings.singleColumn) {
+
+                            let imageMiddle = elementTop + ( (elementBottom - elementTop ) / 2 ) - window.pageYOffset
+                            let imageVisibility = (falloff - Math.abs(halfWindowHeight - imageMiddle)) / falloff
+                            imageVisibility = easing.quad.out(clamp(imageVisibility))
+                            let angle1 = self.getAngle(elementLeft + self.database.settings.offset,elementTop  - window.pageYOffset, centre.x, centre.y) + PI2
+                            let angle2 = self.getAngle(elementLeft + self.database.settings.offset, elementBottom  - window.pageYOffset, centre.x, centre.y) + PI2
+                            let angleDelta = Math.atan2(Math.sin(angle1 - angle2), Math.cos(angle1-angle2))
+                            let angleMiddle = angle1 - (angleDelta / 2)
+                            let radius = 2 * imageVisibility
+                            let angleOrigin = angleMiddle +( PI / 2)
+                            let originOffset = {
+                                x:(radius+1) * Math.cos(angleOrigin),
+                                y:(radius+1) * Math.sin(angleOrigin)
+                            }
+                            let colorValue=imageVisibility*0.3
+                            ctx.fillStyle=`rgba(220,220,202,${colorValue})`
+                            self.setCompositeOperation(ctx,'darken','source-over')
+                            ctx.beginPath()
+                            ctx.moveTo(
+                                centre.x + originOffset.x,
+                                centre.y + originOffset.y
+                            )
+                            ctx.lineTo(elementLeft + self.database.settings.offset, elementTop  - window.pageYOffset)
+                            ctx.lineTo(elementLeft + self.database.settings.offset, elementBottom  - window.pageYOffset)
+                            ctx.lineTo(
+                                centre.x - originOffset.x,
+                                centre.y - originOffset.y
+                            )
+                            ctx.fill()
+                            self.setCompositeOperation(ctx)
+                            ctx.save()
+                        }
+
+                    }
+
+                    ctx.beginPath()
                     ctx.fillStyle = 'yellow';
                     ctx.arc(centre.x, centre.y, 5, 0, 2 * Math.PI, false);
                     ctx.fill();
-                    ctx.fillStyle="white";
-                    //ctx.shadowColor="white";
-                    //ctx.shadowBlur=5;
+                    ctx.fillStyle = "white";
+                    ctx.textAlign = "end"; 
                     ctx.font = "15px 'Guardian Text Sans Web' Arial";
-                    ctx.fillText(`${record.Pool}`, centre.x + 10, centre.y + 5 + (+record.y));
-                    ctx.closePath();
-                    ctx.restore();
+                    ctx.fillText(`${record.Pool}`, centre.x - 10, centre.y - 5 + (+record.y));
+                    //ctx.closePath();
+                    //ctx.restore();
 
                 }
 
@@ -222,20 +250,19 @@ export class Ocean {
 
         var self = this
 
-        this.requestAnimationFrame = requestAnimationFrame( function() {
+        this.requestAnimationFrame = requestAnimationFrame( () => {
 
-            self.reposition().then( () => self.renderLoop())
+            (self.currentTrigger.scroll) ? self.reposition().then( () => self.renderLoop()) : self.static().then( () => self.renderLoop())
 
         })
+
     }
 
     async reposition() {
 
         var self = this
 
-        //var totalDistance = document.body.offsetHeight * window.pageYOffset //( 100 / document.body.offsetHeight * window.pageYOffset )
-
-        var stageDistance = this.database.routes.features[self.currentBasemap].properties.distance
+        var stageDistance = this.database.routes.features[self.currentTrigger.track].properties.distance
 
         var percentageStageDistance = ( 100 / ( self.stageEnd - self.stageStart )  * ( window.pageYOffset - self.stageStart ) )
 
@@ -243,9 +270,21 @@ export class Ocean {
 
         var distance = ( stageDistance / 100 * percentageStageDistance )
 
-        var along = turf.along( self.database.routes.features[self.currentBasemap], distance, { units: 'kilometers' });
+        var along = turf.along( self.database.routes.features[self.currentTrigger.track], distance, { units: 'kilometers' });
 
         self.map.setView( new L.LatLng( along.geometry.coordinates[1], along.geometry.coordinates[0]), self.zoom);
+
+        return true
+
+    }
+
+    async static() {
+
+        var self = this
+
+        var latLng = self.database.routes.features[self.currentTrigger.track].properties.start;
+
+        self.map.panTo([latLng[1], latLng[0]])
 
         return true
 
@@ -257,7 +296,7 @@ export class Ocean {
 
         this.scrolly = new ScrollyTeller({
             parent: document.querySelector("#scrolly-1"),
-            triggerTop: 1/3, // percentage from the top of the screen that the trigger should fire
+            triggerTop: 1 / 3, // percentage from the top of the screen that the trigger should fire
             triggerTopMobile: 0.75,
             transparentUntilActive: true
         });
@@ -266,19 +305,19 @@ export class Ocean {
 
             this.scrolly.addTrigger({num: trigger.id, do: () => {
 
-                self.current = trigger.id
+                self.currentTrigger = trigger
 
-                self.zoom = trigger.zoom
+                if (trigger.pool > 0) {
 
-                self.currentBasemap = trigger.base
+                    self.currentPool = trigger.pool
 
-                var stage = self.triggers.filter( item => item.base === self.currentBasemap)
+                }
+
+                var stage = self.triggers.filter( item => item.track === self.currentTrigger.track)
 
                 self.stageStart = stage[0].distance
 
                 self.stageEnd = stage[stage.length - 1].distance
-
-                self[trigger.type](trigger.id)
 
             }});
 
@@ -286,51 +325,9 @@ export class Ocean {
 
         this.scrolly.watchScroll();
 
-    }
+        this.renderLoop()
 
-    tred(id) {
-
-        this.cancelAFrame()
-
-    }
-
-    reorient(id) {
-
-        var self = this
-
-        console.log("Reposition the map")
-
-        this.cancelAFrame()
-
-        var latLng = self.database.routes.features[self.triggers[id].base].properties.start;
-
-        self.map.panTo([latLng[1], latLng[0]])
-
-    }
-
-    explore(id) {
-
-        var self = this
-
-        if (self.requestAnimationFrame===null) {
-
-            this.renderLoop()
-
-        }
-
-    }
-
-    cancelAFrame() {
-
-        var self = this
-            
-        if (self.requestAnimationFrame) {
-
-           window.cancelAnimationFrame(self.requestAnimationFrame);
-
-           self.requestAnimationFrame = null;
-
-        }
+        this.resizer()
 
     }
 
@@ -376,7 +373,7 @@ export class Ocean {
 
         this.database.settings.screenHeight = document.documentElement.clientHeight                
 
-        self.scrolly.doScrollAction(self.current)
+        //self.scrolly.doScrollAction(self.currentTrigger.current)
 
     }
 
