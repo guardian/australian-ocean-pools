@@ -56,6 +56,7 @@
 }
 
 .scroll-text {
+    width: 100%;
     position: absolute;
     top: 0;
     pointer-events: none;
@@ -63,7 +64,7 @@
 
 .scroll-text__inner {
     box-sizing: border-box;
-    height: 120vh;
+    height: 100vh;
     position: relative;
     z-index: 100;
 

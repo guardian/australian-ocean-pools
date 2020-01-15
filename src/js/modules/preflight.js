@@ -6,7 +6,7 @@ export class Preflight {
 
 		var self = this
 
-		this.googledoc = data
+		this.googledoc = data.filter( (item) => item.id!="")
 
         this.places = places
 
