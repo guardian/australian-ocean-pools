@@ -47,21 +47,32 @@
 	height: auto;
 }
 
-.editorial-showcase p {
+.ocean-pool-name {
 	font-family: 'Guardian Text Sans Web', Arial, sans-serif;
 	box-sizing: border-box;
+	font-weight: 600;
 	width: 100%;
 	position: absolute;
-	top: -30px;
+	top: -28px;
 	left:0px;
-	padding: 2px;
-	padding-left:6px;
-	background-color: yellow;
+	background-color: white;
 	color: black;
 	padding:6px;
 	font-size: 14px;
-	line-height: 14px;
+	line-height: 16px;
 }
+
+.ocean-pool-description {
+	font-family: 'Guardian Text Sans Web', Arial, sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	background-color: white;
+	color: black;
+	padding:6px;
+	font-size: 14px;
+	line-height: 18px;
+}
+
 
 .intro-showcase p {
 	position: absolute;

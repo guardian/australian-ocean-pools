@@ -8,6 +8,8 @@ export class Preflight {
 
 		this.googledoc = data.filter( (item) => item.id!="")
 
+        this.videos = data.filter( (item) => item.Pool==="" && item.video!="")
+
         this.places = places
 
         this.settings = settings 
@@ -116,31 +118,6 @@ export class Preflight {
         return result;
     }
 
-    localStorage() {
-
-        var self = this
-
-        if (typeof localStorage !== 'undefined') {
-            try {
-                localStorage.setItem('verify', 'confirm');
-                if (localStorage.getItem('verify') === 'confirm') {
-                    localStorage.removeItem('verify');
-                    //localStorage is enabled
-                    self.localstore = true;
-                } else {
-                    //localStorage is disabled
-                    self.localstore = false;
-                }
-            } catch(e) {
-                //localStorage is disabled
-                self.localstore = false;
-            }
-        } else {
-            //localStorage is not available
-            self.localstore = false;
-        }
-    }
-
     async process() {
 
         var self = this
@@ -161,7 +138,7 @@ export class Preflight {
         //var translatedPoly = turf.transformTranslate(poly, 100, 35)
 
 
-        return { records : matrix, settings : self.settings, places : self.places, routes : self.routes, land : self.land }
+        return { records : matrix, settings : self.settings, places : self.places, routes : self.routes, land : self.land, videos : self.videos }
 
     }
 

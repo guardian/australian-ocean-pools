@@ -3,9 +3,11 @@ import * as turf from '@turf/turf' // npm:@turf/turf
 import L from 'leaflet'
 import '../modules/L.CanvasOverlay.js'
 import '../modules/lazyloader.js'
-import '../modules/videoInview.js'
+//import '../modules/videoInview.js'
 import { clamp, interpolate, easing } from '../modules//math2'
 import * as topojson from "topojson"
+import scrollTriggers from "../modules/blocks/setupTriggers.js";
+import videoInview from "../modules/videoInview";
 
 export class Ocean {
 
@@ -21,43 +23,21 @@ export class Ocean {
 
         this.currentTrigger = { base: 0 , scroll : false , zoom : 12 , track: 0 }
 
-        this.triggers = []
+        this.triggers = new scrollTriggers('.scroll-text__inner').getTriggers()
 
-        this.setupTriggers()
+        this.videos = this.database.videos.map( (item) => `${this.database.settings.filepath}/assets/videos/${item.video}`)
+
+        this.videoInview = new videoInview({
+
+              rootMargin: '0px 0px 50px 0px',
+
+              threshold: 0
+
+            }, this.videos).setup()
+
+        this.initMap()
 
 	}
-
-    setupTriggers() {
-
-        var self = this
-
-        const triggers = document.querySelectorAll('.scroll-text__inner');
-
-        triggers.forEach( (trigger, id) => {
-
-            var obj = {}
-
-            obj.id = id
-
-            obj.track = +trigger.getAttribute('data-track')
-
-            obj.pool = +trigger.getAttribute('data-pool')
-
-            obj.scroll = (trigger.getAttribute('data-type')==='scroll') ? true : false ;
-
-            obj.zoom = +trigger.getAttribute('data-zoom')
-
-            obj.base = +trigger.getAttribute('data-map')
-
-            obj.distance = window.pageYOffset + trigger.getBoundingClientRect().top
-
-            self.triggers.push(obj)
-
-        });
-
-        self.initMap()
-
-    }
 
     initMap() {
 
@@ -92,49 +72,38 @@ export class Ocean {
         this.setupCanvas()
 
     }
-
-    setCompositeOperation(ctx, mode='source-over', fallback=null) {
-      ctx.globalCompositeOperation = mode
-      let worked=(ctx.globalCompositeOperation == mode)
-      if(!worked && fallback!=null)
-        ctx.globalCompositeOperation=fallback
-      return worked
-    }
-
-    getAngle(x,y,xx,yy) {
-        return Math.atan2(y-yy,x-xx)
-    }
         
     setupCanvas() {
 
         var self = this
 
-        self.canvas = document.createElement('canvas');
-        self.context = self.canvas.getContext("2d");
-        self.canvas.id     = "OceanPoolsLayer";
-        self.canvas.width  = self.database.settings.screenWidth;
-        self.canvas.height = self.database.settings.screenHeight;
-        document.body.appendChild(self.canvas);
+        L.CanvasLayer.Renderer = L.CanvasLayer.extend({
 
-        var ocean = function() {
-
-            this.onLayerDidMount = function (){      
-                // prepare custom drawing    
-            };
-
-            this.onLayerWillUnmount  = function(){
-                // custom cleanup    
-            };
-
-            this.setData = function (data={}) {
-
-                console.log(data.status)
+            setData: function(data={}) {
 
                 this.needRedraw();
 
-            };
+            },
 
-            this.onDrawLayer = function (params) {
+            getAngle: function(x,y,xx,yy) {
+
+                return Math.atan2(y-yy,x-xx)
+
+            },
+
+            setCompositeOperation: function(ctx, mode='source-over', fallback=null) {
+
+              ctx.globalCompositeOperation = mode
+
+              let worked = (ctx.globalCompositeOperation == mode)
+
+              if (!worked && fallback!=null) ctx.globalCompositeOperation = fallback
+
+              return worked
+
+            },
+
+            onDrawLayer: function(params) {
 
                 /*
                 canvas   : <canvas>,
@@ -161,14 +130,6 @@ export class Ocean {
 
                 ctx.clearRect(0, 0, params.size.x, params.size.y);
 
-                var element = document.querySelectorAll('[data-lazy]')[self.currentPool - 1]
-
-                var elementTop = window.pageYOffset + element.getBoundingClientRect().top
-
-                var elementLeft = element.getBoundingClientRect().left
-
-                var elementBottom = window.pageYOffset + element.getBoundingClientRect().bottom
-
                 let halfWindowHeight = window.innerHeight / 2
 
                 let falloff = halfWindowHeight * 0.9
@@ -177,19 +138,27 @@ export class Ocean {
                             
                 const PI2 = PI * 2
 
-                for (const record of self.database.records) {
+                self.database.records.forEach( (record, index) => {
 
                     var centre = self.map.latLngToContainerPoint([record.latitude, record.longitude]);
 
-                    if (centre.y > 0 && centre.y < window.innerHeight && +record.id === self.currentPool) {
+                    if ( !self.database.settings.singleColumn) {
 
-                        if (elementTop > (window.pageYOffset) && elementBottom < ( window.pageYOffset + window.innerHeight) && !self.database.settings.singleColumn) {
+                        var element = document.querySelectorAll('[data-lazy]')[index]
+
+                        var elementTop = window.pageYOffset + element.getBoundingClientRect().top
+
+                        var elementLeft = element.getBoundingClientRect().left
+
+                        var elementBottom = window.pageYOffset + element.getBoundingClientRect().bottom
+
+                        if (elementTop > (window.pageYOffset) && elementBottom < ( window.pageYOffset + window.innerHeight)) {
 
                             let imageMiddle = elementTop + ( (elementBottom - elementTop ) / 2 ) - window.pageYOffset
                             let imageVisibility = (falloff - Math.abs(halfWindowHeight - imageMiddle)) / falloff
                             imageVisibility = easing.quad.out(clamp(imageVisibility))
-                            let angle1 = self.getAngle(elementLeft + self.database.settings.offset,elementTop  - window.pageYOffset, centre.x, centre.y) + PI2
-                            let angle2 = self.getAngle(elementLeft + self.database.settings.offset, elementBottom  - window.pageYOffset, centre.x, centre.y) + PI2
+                            let angle1 = this.getAngle(elementLeft + self.database.settings.offset,elementTop  - window.pageYOffset, centre.x, centre.y) + PI2
+                            let angle2 = this.getAngle(elementLeft + self.database.settings.offset, elementBottom  - window.pageYOffset, centre.x, centre.y) + PI2
                             let angleDelta = Math.atan2(Math.sin(angle1 - angle2), Math.cos(angle1-angle2))
                             let angleMiddle = angle1 - (angleDelta / 2)
                             let radius = 2 * imageVisibility
@@ -200,7 +169,7 @@ export class Ocean {
                             }
                             let colorValue=imageVisibility*0.3
                             ctx.fillStyle=`rgba(220,220,202,${colorValue})`
-                            self.setCompositeOperation(ctx,'darken','source-over')
+                            this.setCompositeOperation(ctx,'darken','source-over')
                             ctx.beginPath()
                             ctx.moveTo(
                                 centre.x + originOffset.x,
@@ -213,9 +182,10 @@ export class Ocean {
                                 centre.y - originOffset.y
                             )
                             ctx.fill()
-                            self.setCompositeOperation(ctx)
+                            this.setCompositeOperation(ctx)
                             ctx.save()
                         }
+
 
                     }
 
@@ -227,20 +197,17 @@ export class Ocean {
                     ctx.textAlign = "end"; 
                     ctx.font = "15px 'Guardian Text Sans Web' Arial";
                     ctx.fillText(`${record.Pool}`, centre.x - 10, centre.y - 5 + (+record.y));
-                    //ctx.closePath();
-                    //ctx.restore();
 
-                }
+                })
+
 
             }
 
-        }
-          
-        ocean.prototype = new L.CanvasLayer(); 
-          
-        this.pools = new ocean();
+        });
 
-        this.pools.addTo(self.map);
+        L.canvasLayer.renderer = () => new L.CanvasLayer.Renderer();
+
+        L.canvasLayer.renderer().addTo(self.map);
 
         this.scroll()
 

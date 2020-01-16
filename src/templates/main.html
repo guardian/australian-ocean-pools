@@ -59,9 +59,9 @@
                     <div class="scroll-text__inner" data-track="{{track}}" data-pool="{{id}}" data-type="{{type}}" data-zoom="{{zoom}}">
                         <div class="scroll-text__div">
                             <div class="editorial-showcase">
-                                <p>{{Pool}}</p>
+                                <div class="ocean-pool-name">{{Pool}}</div>
                                 <img data-lazy="{{image}}">
-                                {{Description}}
+                                <div class="ocean-pool-description">{{Description}}</div>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                     <div class="scroll-text__inner" data-track="{{track}}" data-pool="0" data-type="{{type}}" data-zoom="{{zoom}}">
                         {{#if video}}
                         <div class="video-header-wrapper">
-                            <video loop muted playsinline data-dash="dash" data-hls="hls"></video>
+                            <video class="pool-videos" loop muted playsinline data-dash="dash" data-hls="hls"></video>
                         </div>
                         {{/if}}
                     </div>

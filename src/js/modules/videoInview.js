@@ -1,37 +1,51 @@
-const videoInview = (function() {
+export default class videoInview {
 
-    const config = {
+    constructor(config, src) {
 
-      rootMargin: '0px 0px 50px 0px',
+        this.config = config
 
-      threshold: 0
+        this.src = src
 
-    };  
+        this.pools = document.querySelectorAll('.pool-videos');
 
-    let inview = new IntersectionObserver(function(entries, observer) {
+        this.videos = document.querySelectorAll('video');
 
-      entries.forEach(video => {
+    }
 
-        if (video.isIntersecting) {
+    setup() {
 
-            video.target.play(); 
+      this.pools.forEach( (video, index) => {
 
-        } else {
+        video.setAttribute('src', this.src[index]);
 
-            video.target.pause(); 
-
-        }
+        video.load();
 
       });
 
-    }, config);
+      let inview = new IntersectionObserver(function(entries, observer) {
 
-    const videos = document.querySelectorAll('video');
+        entries.forEach(video => {
 
-    videos.forEach(video => {
+          if (video.isIntersecting) {
 
-      inview.observe(video);
+              video.target.play(); 
 
-    });
+          } else {
 
-})() 
+              video.target.pause(); 
+
+          }
+
+        });
+
+      }, this.config);
+
+      this.videos.forEach( (video, index) => {
+
+        inview.observe(video);
+
+      });
+
+    }
+
+}
