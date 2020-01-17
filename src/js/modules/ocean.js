@@ -3,10 +3,11 @@ import ScrollyTeller from "../modules/scrollyteller"
 import turf from './turfImporter';
 import L from 'leaflet'
 import '../modules/L.CanvasOverlay.js'
-import '../modules/lazyloader.js'
+//import '../modules/lazyloader.js'
 import { clamp, interpolate, easing } from '../modules//math2'
 import scrollTriggers from "../modules/blocks/setupTriggers.js";
 import videoInview from "../modules/videoInview";
+import imageInview from "../modules/imageInview";
 import shareable from "../modules/shareable";
 
 
@@ -24,13 +25,13 @@ export class Ocean {
 
         this.currentTrigger = { base: 0 , scroll : false , zoom : 12 , track: 0 }
 
-        this.videos = this.database.videos.map( (item) => `${this.database.settings.filepath}/assets/videos/${item.video}`)
-
         this.setup()
 
 	}
 
     setup() {
+
+        console.log(this.database.settings.folder)
 
         this.triggers = new scrollTriggers('.scroll-text__inner').getTriggers()
 
@@ -42,7 +43,16 @@ export class Ocean {
 
               threshold: 0
 
-            }, this.videos).setup()
+            }, this.database.videos, this.database.settings.filepath, this.database.settings.folder).setup()
+
+        new imageInview({
+
+              rootMargin: '0px 0px 550px 0px',
+
+              threshold: 0
+
+            }, this.database.settings.folder, this.database.settings.filepath).setup()
+
 
         this.initMap()
 

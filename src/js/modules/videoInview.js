@@ -3,11 +3,15 @@ shaka.polyfill.installAll();
 
 export default class videoInview {
 
-  constructor(config, src) {
+  constructor(config, src, path, folder) {
 
     this.config = config
 
     this.src = src
+
+    this.path = path
+
+    this.folder = folder
 
     this.pools = document.querySelectorAll('.pool-videos');
 
@@ -19,7 +23,9 @@ export default class videoInview {
 
     this.pools.forEach( (video, index) => {
 
-      video.setAttribute('src', this.src[index]);
+      video.setAttribute('poster', `${this.path}/assets/images/${this.folder}/${this.src[index].poster}`);
+
+      video.setAttribute('src', `${this.path}/assets/videos/${this.src[index].video}`);
 
       video.load();
 
@@ -27,11 +33,11 @@ export default class videoInview {
 
       if (shaka.Player.isBrowserSupported()) {
 
-        this.initPlayer(video);
+        this.initPlayer(video, `${this.path}/assets/videos/${this.src[index].dash}`);
 
       } else {  
 
-        video.setAttribute('src', this.src[index]);
+        video.setAttribute('src', `${this.path}/assets/videos/${this.src[index].hls}`);
 
         video.load();
 
@@ -67,11 +73,7 @@ export default class videoInview {
 
   }
 
-  initPlayer(video) {
-
-    var manifestUri = 'https://interactive.guim.co.uk/embed/aus/2020/firestorm/firezone/dash/A_feeling_of_being_invaded-manifest.mpd'
-
-    //'<%= path %>/assets/firezone/dash/A_feeling_of_being_invaded-manifest.mpd';
+  initPlayer(video, manifest) {
 
     var player = new shaka.Player(video);
 

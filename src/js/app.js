@@ -13,7 +13,7 @@ var app = {
 		loadJson(`https://interactive.guim.co.uk/docsdata/${key}.json`)
 			.then((data) => {
 
-				var wrangle = new Preflight(data.sheets.Data, key, settings, places, centred, land)
+				var wrangle = new Preflight(data.sheets.Data, key, settings, places, centred, land, data.sheets.Videos)
 
 				wrangle.process().then( (application) => {
 

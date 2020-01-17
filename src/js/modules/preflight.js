@@ -3,13 +3,13 @@ import turf from './turfImporter';
 
 export class Preflight {
 
-	constructor(data, key, settings, places, centred, land) {
+	constructor(data, key, settings, places, centred, land, videos) {
 
 		var self = this
 
 		this.googledoc = data.filter( (item) => item.id!="")
 
-        this.videos = data.filter( (item) => item.Pool==="" && item.video!="")
+        this.videos = videos
 
         this.places = places
 
@@ -40,6 +40,8 @@ export class Preflight {
         this.settings.screenWidth = document.documentElement.clientWidth
 
         this.settings.screenHeight = document.documentElement.clientHeight
+
+        this.settings.folder = self.setDirectory(this.settings.screenWidth)
 
         this.settings.ratio = this.settings.screenWidth / this.settings.screenHeight
 
@@ -75,6 +77,14 @@ export class Preflight {
       }
 
       return false;
+
+    }
+
+    setDirectory(width) {
+
+      return (width < 401) ? 400 : 
+      (width < 601) ? 600 : 
+      (width < 801) ? 800 : 1000 ;
 
     }
 
