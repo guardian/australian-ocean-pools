@@ -18,8 +18,12 @@
 
 }
 
-.video-header-wrapper, .video-header-wrapper video {
+.video-header-wrapper, .video-header-wrapper video, .video-inline-wrapper, .video-inline-wrapper video {
     width: 100%;
     overflow: hidden;
 }
 
+.video-inline-wrapper {
+    margin-top: 25vh;
+    margin-bottom: 25vh;
+}

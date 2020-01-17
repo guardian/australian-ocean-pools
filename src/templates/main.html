@@ -6,7 +6,7 @@
 
             <div class="video-container">
                 <video class="uit-video uit-desktop" playsinline muted loop>
-                <source src="<%= path %>/assets/header.mp4" type="video/mp4">
+                <source src="<%= path %>/assets/videos/opening.mp4" type="video/mp4">
                 </video>
             </div>
 
@@ -23,6 +23,12 @@
                 <p class="standfirst">
                     <span>For five years, Nicole Larkin has been documenting New South Wales' unique abundance of coastal pools. Guardian Australia has mapped the Sydney-based architect's efforts, revealing sites of human ingenuity, and natural beauty</span>
                 </p>
+
+                <div class="social_isolation">
+                    <button class="interactive-share" data-network="facebook"></button> 
+                    <button class="interactive-share" data-network="twitter"></button>
+                </div>
+                
 
             </div>
 
@@ -49,8 +55,10 @@
                         <div class="intro-showcase">
                             <p><span class="firstcharacter">W</span>e start on the southern edge of a small, curved beach in the Clarence Valley region. Overlooked by green hills and 112-year-old surf life saving club, Yamba ocean pool is the northernmost in the state. The chain of 59 pools that follow stretches 1000km south, to Bermagui in the Bega Valley Shire. Cleverly constructed to exploit natural rock platforms, these pools feel intimately connected to their natural environments, with unconstructed edges, lapping waves, sandy bottoms or their own marine ecosystems. Many were constructed during the depression, and all the pools featured here remain vital public amenities to this day. Providing both access to, and shelter from the ocean, they are places of celebration, community and play. </p>
                         </div>
+
                     </div>
                 </div>
+
 
                 {{#Data}}
 
@@ -70,7 +78,7 @@
 
                     <div class="scroll-text__inner" data-track="{{track}}" data-pool="0" data-type="{{type}}" data-zoom="{{zoom}}">
                         {{#if video}}
-                        <div class="video-header-wrapper">
+                        <div class="video-inline-wrapper">
                             <video class="pool-videos" loop muted playsinline data-dash="dash" data-hls="hls"></video>
                         </div>
                         {{/if}}

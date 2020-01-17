@@ -1,8 +1,9 @@
-import * as turf from '@turf/turf' //jspm install npm:@turf/turf
+//import * as turf from '@turf/turf' //jspm install npm:@turf/turf
+import turf from './turfImporter';
 
 export class Preflight {
 
-	constructor(data, key, settings, places, centred, offset, land) {
+	constructor(data, key, settings, places, centred, land) {
 
 		var self = this
 
@@ -50,7 +51,7 @@ export class Preflight {
 
         this.settings.offset = 0 //(this.settings.singleColumn) ? 0 : this.settings.screenWidth / 4 ;
 
-        this.routes = (this.settings.singleColumn) ? centred : offset ;
+        this.routes = centred
 
         this.land = land
 

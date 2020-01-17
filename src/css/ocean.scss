@@ -167,6 +167,7 @@ canvas {
 				font-family: "Guardian Headline", "Guardian Egyptian Web", "Guardian Headline Full", Georgia, serif;
 				font-weight: normal;
 				line-height: 24px;
+				margin-top: 25vh;
 
 				@include mq($until: tablet) {
 					width: 90%;
@@ -179,17 +180,17 @@ canvas {
 				}
 
 				@include mq($from: tablet, $until: desktop) {
-					max-width: calc(60% - 40px);
+					max-width: calc(80% - 40px);
 					margin-right: 80px;
 				}
 
 				@include mq($from: desktop, $until: wide) {
-					max-width: calc(60% - 40px);
+					max-width: calc(75% - 40px);
 					margin-right: 80px;
 				}
 
 				@include mq($from: wide) {
-					max-width: calc(60% - 40px);
+					max-width: calc(70% - 40px);
 					margin-right: 80px;
 				}
 

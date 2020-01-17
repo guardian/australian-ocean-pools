@@ -1,13 +1,14 @@
 import ScrollyTeller from "../modules/scrollyteller"
-import * as turf from '@turf/turf' // npm:@turf/turf
+//import * as turf from '@turf/turf' // npm:@turf/turf
+import turf from './turfImporter';
 import L from 'leaflet'
 import '../modules/L.CanvasOverlay.js'
 import '../modules/lazyloader.js'
-//import '../modules/videoInview.js'
 import { clamp, interpolate, easing } from '../modules//math2'
-import * as topojson from "topojson"
 import scrollTriggers from "../modules/blocks/setupTriggers.js";
 import videoInview from "../modules/videoInview";
+import shareable from "../modules/shareable";
+
 
 export class Ocean {
 
@@ -23,11 +24,19 @@ export class Ocean {
 
         this.currentTrigger = { base: 0 , scroll : false , zoom : 12 , track: 0 }
 
-        this.triggers = new scrollTriggers('.scroll-text__inner').getTriggers()
-
         this.videos = this.database.videos.map( (item) => `${this.database.settings.filepath}/assets/videos/${item.video}`)
 
-        this.videoInview = new videoInview({
+        this.setup()
+
+	}
+
+    setup() {
+
+        this.triggers = new scrollTriggers('.scroll-text__inner').getTriggers()
+
+        new shareable(this.database.settings.social).activate()
+
+        new videoInview({
 
               rootMargin: '0px 0px 50px 0px',
 
@@ -37,7 +46,7 @@ export class Ocean {
 
         this.initMap()
 
-	}
+    }
 
     initMap() {
 
@@ -239,7 +248,11 @@ export class Ocean {
 
         var along = turf.along( self.database.routes.features[self.currentTrigger.track], distance, { units: 'kilometers' });
 
-        self.map.setView( new L.LatLng( along.geometry.coordinates[1], along.geometry.coordinates[0]), self.zoom);
+        var bounds = self.map.getBounds();
+
+        var offset = ( bounds._northEast.lat - bounds._southWest.lat ) / 1.5
+
+        self.map.setView( new L.LatLng( along.geometry.coordinates[1], along.geometry.coordinates[0] + offset), self.zoom);
 
         return true
 
@@ -251,7 +264,11 @@ export class Ocean {
 
         var latLng = self.database.routes.features[self.currentTrigger.track].properties.start;
 
-        self.map.panTo([latLng[1], latLng[0]])
+        var bounds = self.map.getBounds();
+
+        var offset = ( bounds._northEast.lat - bounds._southWest.lat ) / 1.5
+
+        self.map.panTo([latLng[1], latLng[0] + offset])
 
         return true
 

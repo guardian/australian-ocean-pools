@@ -66,6 +66,7 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "require-uncached": "^1.0.3",
+    "shaka-player": "^2.5.8",
     "topojson": "^3.0.2",
     "unfetch": "^3.0.0"
   }
