@@ -43,6 +43,8 @@ export class Preflight {
 
         this.settings.folder = self.setDirectory(this.settings.screenWidth)
 
+        this.settings.videoWidth = self.videoSize(this.settings.screenWidth)
+
         this.settings.ratio = this.settings.screenWidth / this.settings.screenHeight
 
         this.settings.margin = { top: 0, right: 0, bottom: 0, left: 0 }
@@ -85,6 +87,16 @@ export class Preflight {
       return (width < 401) ? 400 : 
       (width < 601) ? 600 : 
       (width < 801) ? 800 : 1000 ;
+
+    }
+
+    videoSize(width) {
+
+      return (width < 401) ? 400 : 
+      (width < 481) ? 480 : 
+      (width < 641) ? 640 :
+      (width < 961) ? 960 :
+      (width < 1281) ? 1280 : 1920 ;
 
     }
 

@@ -2,12 +2,10 @@
 
     <div class="header-wrapper">
 
-        <div class="interactive-wrapper">
+        <div class="header-title-wrapper">
 
             <div class="video-container">
-                <video poster="<%= path %>/assets/images/opening.jpg" class="uit-video uit-desktop" playsinline muted loop>
-                <source src="<%= path %>/assets/videos/opening.mp4" type="video/mp4">
-                </video>
+                <video playsinline muted loop></video>
             </div>
 
             <div class="header-container">
@@ -17,11 +15,11 @@
                 </div>
                 
                 <div class="headline-wrapper">
-                    <h1>Making shore: Chronicling New South Wales' magnificent ocean pools</h1>
+                    <h1>Water worlds: the magic of New South Wales’ ocean pools</h1>
                 </div>
 
                 <p class="standfirst">
-                    <span>For five years, Nicole Larkin has been documenting New South Wales' unique abundance of coastal pools. Guardian Australia has mapped the Sydney-based architect's efforts, revealing sites of human ingenuity, and natural beauty</span>
+                    <span>For five years, <a href="https://www.nicolelarkin.com/" target="_blank">Nicole Larkin</a> has been documenting the state’s unique abundance of coastal pools. Guardian Australia has mapped the Sydney-based architect's efforts, revealing sites of human ingenuity, and natural beauty</span>
                 </p>
 
                 <div class="social_isolation">
@@ -53,7 +51,7 @@
                 <div class="scroll-text__inner" data-track="0" data-pool="0" data-type="static" data-zoom="11" data-map="0">
                     <div class="intro-text__div">
                         <div class="intro-showcase">
-                            <p><span class="firstcharacter">W</span>e start on the southern edge of a small, curved beach in the Clarence Valley region. Overlooked by green hills and 112-year-old surf life saving club, Yamba ocean pool is the northernmost in the state. The chain of 59 pools that follow stretches 1000km south, to Bermagui in the Bega Valley Shire. Cleverly constructed to exploit natural rock platforms, these pools feel intimately connected to their natural environments, with unconstructed edges, lapping waves, sandy bottoms or their own marine ecosystems. Many were constructed during the depression, and all the pools featured here remain vital public amenities to this day. Providing both access to, and shelter from the ocean, they are places of celebration, community and play. </p>
+                            <p><span class="firstcharacter">W</span>e start on the southern edge of a small, curved beach in the Clarence Valley region. Overlooked by green hills and 112-year-old surf life saving club, Yamba ocean pool is the northernmost in the state. The chain of 59 pools that follow stretches 1,000km all the way to the Aislings beach Rockpool in Eden close to Victorian border. Cleverly constructed to exploit natural rock platforms, these pools feel intimately connected to their natural environments, with unconstructed edges, lapping waves, sandy bottoms or their own marine ecosystems. Many were constructed during the depression, and all the pools featured here remain vital public amenities to this day. Providing both access to, and shelter from the ocean, they are places of celebration, community and play.</p>
                         </div>
 
                     </div>
@@ -78,8 +76,10 @@
 
                     <div class="scroll-text__inner" data-track="{{track}}" data-pool="0" data-type="{{type}}" data-zoom="{{zoom}}">
                         {{#if video}}
-                        <div class="video-inline-wrapper">
-                            <video class="pool-videos" loop muted playsinline data-dash="dash" data-hls="hls"></video>
+                        <div class="scroll-text__video">
+                            <div class="video-inline-wrapper">
+                                <video class="pool-videos" loop muted playsinline></video>
+                            </div>
                         </div>
                         {{/if}}
                     </div>
@@ -95,3 +95,63 @@
     </div>
 
 </div>
+
+    <div class="footer-container">
+
+        <div class="footer" id="footer">
+
+            
+            <h2>Read more</h2>
+            <ul class="footer-grid">
+                <li>
+                    <div class="footer-item-container">
+                        <img src="https://i.guim.co.uk/img/media/038fefca82c8e67eda065c9fa64c54c7233b31ec/0_281_2800_1680/master/2800.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=c3af420d8b9ca9d8cf661612aa9d929a">
+                        <div class="footer-text-content">
+                            <h2>Forced to build their own pyres: dozens more Aboriginal massacres revealed in Killing Times research</h2>
+                        </div>
+                        <a class="anchor" href="https://www.theguardian.com/australia-news/2019/nov/18/forced-to-build-their-own-pyres-dozens-more-aboriginal-massacres-revealed-in-killing-times-research" target="_blank"></a>
+                    </div>
+                </li>      
+                <li>
+                    <div class="footer-item-container">
+                        <img src="https://i.guim.co.uk/img/media/f3500ed44ff3fb545f4b66f71314d51de1716c14/0_0_3543_2362/master/3543.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=690716c34168e6411970464d8366656e">
+                        <div class="footer-text-content">
+                            <h2>The Pinjarra massacre: it's time to speak the truth of this terrible slaughter</h2>
+                        </div>
+                        <a class="anchor" href="https://www.theguardian.com/australia-news/2019/nov/18/the-pinjarra-massacre-its-time-to-speak-the-truth-of-this-terrible-slaughter" target="_blank"></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="footer-item-container">
+                        <img src="https://i.guim.co.uk/img/media/6e491999ab2a0a86466da6eb82a3813a5ca034e9/0_599_2800_1680/master/2800.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=e77a752fb857b006f133f9db3a44307b">
+                        <div class="footer-text-content">
+                            <h2>Blood, brains and foul murder: evidence of Australia's massacres are in its newspapers</h2>
+                        </div>
+                        <a class="anchor" href="https://www.theguardian.com/australia-news/2019/nov/18/blood-brains-and-foul-the-evidence-of-australias-massacres-are-in-its-newspapers" target="_blank"></a>
+                    </div>
+                </li>      
+            </ul>
+
+            
+            <div class="credits col50">
+                <h2>Credits</h2>
+                <div class="credits-inner">
+                    <p class="gia-byline"><span>Photography and video footage: </span><a href="https://www.nicolelarkin.com/">Nicole Larkin</a>
+
+                    <p class="gia-byline"><span>Production: </span><a href='https://www.theguardian.com/profile/hannah-izzard'>Hannah Izzard</a> and <a href='https://www.theguardian.com/profile/patrick-keneally'>Patrick Keneally</a></p>
+
+                    <p class="gia-byline"><span>Design and development: </span><a href='https://www.theguardian.com/profile/andy-ball'>Andy Ball</a> and <a href='https://www.theguardian.com/profile/nick-evershed'>Nick Evershed</a></p></p>
+    
+                </div>
+            </div>
+
+            <div class="credits col50">
+
+                <h2>About the ocean pools project</h2>
+                <div class="credits-inner">
+                    <p class="gia-byline">Nicole Larkin is a Sydney based architect, artist and designer. Visit 
+                        <a href="https://www.nicolelarkin.com/" target="_blank">www.nicolelarkin.com</a> to access the full database of ocean pools for NSW, where each ocean pool has been surveyed in the form of 3D models and scale drawings. Funding for Nicole Larkin's ocean pool project was awarded by the Architects Registration Board NSW as part of the Byera Hadley Traveling Scholarship.</p>
+                </div>
+            </div>
+        </div>
+    </div>

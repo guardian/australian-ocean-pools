@@ -2,14 +2,14 @@
 
 .video-container {
     left: 0;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     z-index: 1;
     overflow: hidden;
 
-    .uit-video {
+    video {
         position: absolute;
         object-fit: cover;
         width: 100%;
@@ -21,9 +21,4 @@
 .video-header-wrapper, .video-header-wrapper video, .video-inline-wrapper, .video-inline-wrapper video {
     width: 100%;
     overflow: hidden;
-}
-
-.video-inline-wrapper {
-    margin-top: 25vh;
-    margin-bottom: 25vh;
 }

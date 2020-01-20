@@ -23,7 +23,7 @@ export class Ocean {
 
         this.currentPool = 1
 
-        this.currentTrigger = { base: 0 , scroll : false , zoom : 12 , track: 0 }
+        this.currentTrigger = { base: 0 , scroll : false , zoom : 11 , track: 0 }
 
         this.setup()
 
@@ -43,7 +43,7 @@ export class Ocean {
 
               threshold: 0
 
-            }, this.database.videos, this.database.settings.filepath, this.database.settings.folder).setup()
+            }, this.database.videos, this.database.settings.filepath, this.database.settings.folder, this.database.settings.videoWidth).setup()
 
         new imageInview({
 
@@ -81,6 +81,14 @@ export class Ocean {
             "fillOpacity": 1,
             "opacity": 1
         };
+
+        /*
+        self.map.on('click', function(e){
+          var coord = e.latlng;
+          var lat = coord.lat;
+          var lng = coord.lng;
+          console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
+          }); */
 
         this.boundary = L.geoJSON(self.database.land, {
 
@@ -201,21 +209,24 @@ export class Ocean {
                                 centre.y - originOffset.y
                             )
                             ctx.fill()
-                            this.setCompositeOperation(ctx)
+                            //this.setCompositeOperation(ctx)
                             ctx.save()
                         }
 
 
                     }
 
+                    var dev = (Math.abs(self.currentPool - index) < 3) ? 1 : 1 / ( Math.abs(self.currentPool - index) / 1.5)
+
                     ctx.beginPath()
-                    ctx.fillStyle = 'yellow';
+                    ctx.fillStyle = `rgba(255,242,0,${dev})`//'yellow';
                     ctx.arc(centre.x, centre.y, 5, 0, 2 * Math.PI, false);
                     ctx.fill();
-                    ctx.fillStyle = "white";
+                    ctx.fillStyle = `rgba(255,255,255,${dev})` //"white";
                     ctx.textAlign = "end"; 
                     ctx.font = "15px 'Guardian Text Sans Web' Arial";
                     ctx.fillText(`${record.Pool}`, centre.x - 10, centre.y - 5 + (+record.y));
+                    this.setCompositeOperation(ctx)
 
                 })
 
@@ -258,11 +269,17 @@ export class Ocean {
 
         var along = turf.along( self.database.routes.features[self.currentTrigger.track], distance, { units: 'kilometers' });
 
-        var bounds = self.map.getBounds();
+        var offset = 0
 
-        var offset = ( bounds._northEast.lat - bounds._southWest.lat ) / 1.5
+        if (!self.database.settings.singleColumn) {
 
-        self.map.setView( new L.LatLng( along.geometry.coordinates[1], along.geometry.coordinates[0] + offset), self.zoom);
+            var bounds = self.map.getBounds();
+
+            offset = ( bounds._northEast.lat - bounds._southWest.lat ) / 1.5
+
+        }
+
+        self.map.setView( new L.LatLng( along.geometry.coordinates[1], along.geometry.coordinates[0] + offset), self.currentTrigger.zoom);
 
         return true
 
@@ -274,11 +291,19 @@ export class Ocean {
 
         var latLng = self.database.routes.features[self.currentTrigger.track].properties.start;
 
-        var bounds = self.map.getBounds();
+        var offset = 0
 
-        var offset = ( bounds._northEast.lat - bounds._southWest.lat ) / 1.5
+        if (!self.database.settings.singleColumn) {
 
-        self.map.panTo([latLng[1], latLng[0] + offset])
+            var bounds = self.map.getBounds();
+
+            offset = ( bounds._northEast.lat - bounds._southWest.lat ) / 1.5
+
+        }
+
+        //self.map.panTo([latLng[1], latLng[0] + offset])
+
+        self.map.setView( new L.LatLng(latLng[1], latLng[0] + offset), self.currentTrigger.zoom);
 
         return true
 

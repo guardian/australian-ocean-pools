@@ -4,7 +4,7 @@ const googleBaseUrl = 'https://plus.google.com/share?url=';
 export default function share(title, shareURL, fbImg, twImg, hashTag, FBmessage='') {
     var twImgText = twImg ? ` ${twImg.trim()} ` : ' ';
     return function (network, extra='') {
-        var twitterMessage = `${title} ${hashTag}`;
+        var twitterMessage = `${FBmessage} ${hashTag}`;
         var shareWindow;
         console.log(twitterMessage)
         if (network === 'twitter') {

@@ -39,6 +39,11 @@
 		position: relative;
 		z-index: 2;
 
+		@include mq($until: desktop) {
+			margin-left: 20px;
+		}
+
+
 		@include mq($from: desktop) {
 			margin-left: 240px;
 		}
@@ -139,7 +144,7 @@
 
 	}
 
-	.interactive-wrapper {
+	.header-title-wrapper {
 
 		@include mq($until: tablet) {
 			padding-top: 10vh;
