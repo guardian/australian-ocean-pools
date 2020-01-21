@@ -5,13 +5,18 @@
         <div class="header-title-wrapper">
 
             <div class="video-container">
-                <video playsinline muted loop></video>
+                <video playsinline muted loop poster="<%= path %>/assets/images/1000/opening.jpg">>
+                    <source media="all and (max-width: 960px)" src="https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/1280/opening.mp4" type="video/mp4">
+                    <source media="all and (max-width: 640px)" src="https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/640/opening.mp4" type="video/mp4"> 
+                    <source media="all and (max-width: 416px)" src="https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/480/opening.mp4" type="video/mp4">
+                    <source src="https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/1920/opening.mp4" type="video/mp4">
+                </video>
             </div>
 
             <div class="header-container">
 
                 <div class="int-tag">
-                    Coastal heritage
+                    Ocean pools
                 </div>
                 
                 <div class="headline-wrapper">
@@ -29,8 +34,6 @@
                 
 
             </div>
-
-            <div class="img-credit-header"></div>
 
         </div>
 
@@ -51,7 +54,7 @@
                 <div class="scroll-text__inner" data-track="0" data-pool="0" data-type="static" data-zoom="11" data-map="0">
                     <div class="intro-text__div">
                         <div class="intro-showcase">
-                            <p><span class="firstcharacter">W</span>e start on the southern edge of a small, curved beach in the Clarence Valley region. Overlooked by green hills and 112-year-old surf life saving club, Yamba ocean pool is the northernmost in the state. The chain of 59 pools that follow stretches 1,000km all the way to the Aislings beach Rockpool in Eden close to Victorian border. Cleverly constructed to exploit natural rock platforms, these pools feel intimately connected to their natural environments, with unconstructed edges, lapping waves, sandy bottoms or their own marine ecosystems. Many were constructed during the depression, and all the pools featured here remain vital public amenities to this day. Providing both access to, and shelter from the ocean, they are places of celebration, community and play.</p>
+                            <p><span class="firstcharacter">W</span>e start on the southern edge of a small curved beach in the Clarence Valley. Overlooked by green hills and a 112-year-old surf lifesaving club, Yamba ocean pool is the northernmost in the state. The chain of 58 pools that follows stretches 1,000km, all the way to Aslings beach rockpool in Eden, close to the Victorian border. Cleverly constructed to exploit natural rock platforms, these pools feel intimately connected to their natural environments, with unconstructed edges, lapping waves, sandy bottoms and their own marine ecosystems. Many were built during the Great Depression and all the pools featured here remain vital public amenities to this day. Providing both access to and shelter from the ocean, they are places of celebration, community and play.</p>
                         </div>
 
                     </div>
@@ -74,14 +77,29 @@
 
                     {{else}}
 
+
+
                     <div class="scroll-text__inner" data-track="{{track}}" data-pool="0" data-type="{{type}}" data-zoom="{{zoom}}">
                         {{#if video}}
+
                         <div class="scroll-text__video">
-                            <div class="video-inline-wrapper">
-                                <video class="pool-videos" loop muted playsinline></video>
-                            </div>
-                        </div>
+
+                        {{#if section}}
+
+                        <div class="section-header"><h2>{{section}}</h2></div>
+
                         {{/if}}
+
+                            <div class="video-inline-wrapper">
+
+                                <video class="pool-videos" loop muted playsinline></video>
+
+                            </div>
+
+                        </div>
+
+                        {{/if}}
+
                     </div>
 
                     {{/if}}
@@ -105,29 +123,29 @@
             <ul class="footer-grid">
                 <li>
                     <div class="footer-item-container">
-                        <img src="https://i.guim.co.uk/img/media/038fefca82c8e67eda065c9fa64c54c7233b31ec/0_281_2800_1680/master/2800.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=c3af420d8b9ca9d8cf661612aa9d929a">
+                        <img src="<%= path %>/assets/images/600/Nothernbeaches.jpg">
                         <div class="footer-text-content">
-                            <h2>Forced to build their own pyres: dozens more Aboriginal massacres revealed in Killing Times research</h2>
+                            <h2>Liquid assets: a treasure trove of ocean pools seen from the air – video</h2>
                         </div>
-                        <a class="anchor" href="https://www.theguardian.com/australia-news/2019/nov/18/forced-to-build-their-own-pyres-dozens-more-aboriginal-massacres-revealed-in-killing-times-research" target="_blank"></a>
+                        <a class="anchor" href="https://www.theguardian.com/lifeandstyle/video/2020/jan/21/liquid-assets-a-treasure-trove-of-ocean-pools-seen-from-the-air-video" target="_blank"></a>
                     </div>
                 </li>      
                 <li>
                     <div class="footer-item-container">
-                        <img src="https://i.guim.co.uk/img/media/f3500ed44ff3fb545f4b66f71314d51de1716c14/0_0_3543_2362/master/3543.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=690716c34168e6411970464d8366656e">
+                        <img src="https://i.guim.co.uk/img/media/484ae15e1621847c77623feb8e82d56c60e0c582/0_0_6720_4480/master/6720.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=4c86d1bc3c1449f5e38f814ac2ac6e61">
                         <div class="footer-text-content">
-                            <h2>The Pinjarra massacre: it's time to speak the truth of this terrible slaughter</h2>
+                            <h2>Australians love ocean pools – but they are increasingly under threat</h2>
                         </div>
-                        <a class="anchor" href="https://www.theguardian.com/australia-news/2019/nov/18/the-pinjarra-massacre-its-time-to-speak-the-truth-of-this-terrible-slaughter" target="_blank"></a>
+                        <a class="anchor" href="https://www.theguardian.com/lifeandstyle/2020/jan/21/australians-love-ocean-pools-but-they-are-increasingly-under-threat" target="_blank"></a>
                     </div>
                 </li>
                 <li>
                     <div class="footer-item-container">
-                        <img src="https://i.guim.co.uk/img/media/6e491999ab2a0a86466da6eb82a3813a5ca034e9/0_599_2800_1680/master/2800.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=e77a752fb857b006f133f9db3a44307b">
+                        <img src="https://i.guim.co.uk/img/media/28cf18ffdef8d5619e317d2f978125156ab5bd6a/0_203_4176_2506/master/4176.jpg?width=1300&quality=45&auto=format&fit=max&dpr=2&s=b8306cb54ab9cdaaebe188a81a30bb20">
                         <div class="footer-text-content">
-                            <h2>Blood, brains and foul murder: evidence of Australia's massacres are in its newspapers</h2>
+                            <h2>'The best in the world': a love letter to Australia's public pools</h2>
                         </div>
-                        <a class="anchor" href="https://www.theguardian.com/australia-news/2019/nov/18/blood-brains-and-foul-the-evidence-of-australias-massacres-are-in-its-newspapers" target="_blank"></a>
+                        <a class="anchor" href="https://www.theguardian.com/cities/2018/apr/13/best-world-love-letter-australia-public-pools-sydney-swimming" target="_blank"></a>
                     </div>
                 </li>      
             </ul>

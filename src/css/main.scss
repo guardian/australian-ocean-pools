@@ -84,3 +84,52 @@
 	padding:6px;
 	color: white;
 }
+
+.section-header {
+	box-sizing: border-box;
+	width: 100%;
+	color: white;
+
+	padding: 20px;
+	text-align: left;
+	z-index: 9999999;
+	
+
+	@include mq($until: mobile) {
+		font-size: 40px;
+		line-height: 44px;
+		margin-bottom: 20px;
+	}
+
+	@include mq($from: mobile, $until: mobileLandscape) {
+		font-size: 30px;
+		line-height: 40px;
+		margin-bottom: 10px;
+	}
+
+	@include mq($from: mobileLandscape, $until: tablet) {
+		font-size: 40px;
+		line-height: 44px;
+		margin-bottom: 10px;
+	}
+
+	@include mq($from: tablet, $until: desktop) {
+		font-size: 40px;
+		line-height: 44px;
+		margin-bottom: 10px;
+	}
+
+	@include mq($from: desktop, $until: wide) {
+		font-size: 40px;
+		line-height: 44px;
+		margin-bottom: 10px;
+	}
+
+	@include mq($from: wide) {
+		font-size: 40px;
+		line-height: 44px;
+		margin-bottom: 10px;
+	}
+
+
+}

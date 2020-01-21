@@ -43,7 +43,7 @@ export class Ocean {
 
               threshold: 0
 
-            }, this.database.videos, this.database.settings.filepath, this.database.settings.folder, this.database.settings.videoWidth).setup()
+            }, this.database.videos, this.database.settings.filepath, this.database.settings.folder, this.database.settings.videoWidth, this.database.settings.app).setup()
 
         new imageInview({
 

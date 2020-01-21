@@ -2,86 +2,18 @@
 
     "social": {
 
-        "title" : "Ocean pools",
+        "title" : "Water worlds: the magic of New South Wales’ ocean pools",
 
-        "url" : "",
+        "url" : "https://www.theguardian.com/lifeandstyle/ng-interactive/2020/jan/21/water-worlds-the-magic-of-new-south-wales-ocean-pools",
 
-        "fbImg" : "",
+        "fbImg" : "https://i.guim.co.uk/img/media/ba3ef7ffbe9c5630cddff0c8965cc0738c947390/125_0_3750_2250/master/3750.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=6d05fafd257dde7c60b51333251ac4d0",
 
-        "twImg" : "",
+        "twImg" : "https://i.guim.co.uk/img/media/ba3ef7ffbe9c5630cddff0c8965cc0738c947390/125_0_3750_2250/master/3750.jpg?width=1200&amp;height=630&amp;quality=85&amp;auto=format&amp;fit=crop&amp;overlay-align=bottom%2Cleft&amp;overlay-width=100p&amp;overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&amp;s=c678dbb63f9f8bc92914c37d4caf3aa3",
 
         "twHash" : "#OceanPools",
 
-        "message" : "Water worlds: the magic of ocean pools"
+        "message" : "For five years, Nicole Larkin has been documenting the state’s unique abundance of coastal pools. Guardian Australia has mapped the Sydney-based architect's efforts, revealing sites of human ingenuity, and natural beauty"
 
-    },
-
-    "basemap": [{
-
-        "src" : "<%= path %>/assets/zone3.png",
-
-        "image_width" : 2000,
-
-        "image_height" : 2198,
-
-        "north_west" : [151.84341430664065,-31.483722267336216],
-
-        "south_east" : [153.21670532226565,-32.76071688548088]
-    },{
-
-        "src" : "<%= path %>/assets/zone4.png",
-
-        "image_width" : 2000,
-
-        "image_height" : 1973,
-
-        "north_west" : [151.08673095703128,-32.370102922093395],
-
-        "south_east" : [152.46002197265628,-33.50704924881553]
-    },{
-
-        "src" : "<%= path %>/assets/zone5.png",
-
-        "image_width" : 2000,
-
-        "image_height" : 2808,
-
-        "north_west" : [150.6431579589844,-32.90553280620373],
-
-        "south_east" : [152.0164489746094,-34.509385763804225]
-    },{
-
-        "src" : "<%= path %>/assets/zone6.png",
-
-        "image_width" : 2000,
-
-        "image_height" : 2840,
-
-        "north_west" : [150.23529052734378,-33.6734971019131],
-
-        "south_east" : [151.60858154296878,-35.28598473606575]
-    },{
-
-        "src" : "<%= path %>/assets/zone6.png",
-
-        "image_width" : 2000,
-
-        "image_height" : 2840,
-
-        "north_west" : [150.23529052734378,-33.6734971019131],
-
-        "south_east" : [151.60858154296878,-35.28598473606575]
-    },{
-
-        "src" : "<%= path %>/assets/zone8.png",
-
-        "image_width" : 2000,
-
-        "image_height" : 3124,
-
-        "north_west" : [149.31037902832034,-35.882930670625086],
-
-        "south_east" : [150.68367004394534,-37.601176236566666]
-    }]
+    }
 }
 

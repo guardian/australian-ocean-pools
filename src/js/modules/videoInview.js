@@ -1,9 +1,11 @@
 import shaka from "shaka-player";
 shaka.polyfill.installAll();
 
+
+
 export default class videoInview {
 
-  constructor(config, src, path, folder, width) {
+  constructor(config, src, path, folder, width, app) {
 
     this.config = config
 
@@ -15,37 +17,54 @@ export default class videoInview {
 
     this.width = width
 
+    this.app = app
+
     this.videos = document.querySelectorAll('video');
 
+    this.pools = document.querySelectorAll('.pool-videos');
+  
   }
 
   setup() {
 
-    this.videos.forEach( (video, index) => {
+    this.pools.forEach( (video, index) => {
 
-      video.setAttribute('poster', `${this.path}/assets/images/${this.folder}/${this.src[index].poster}`);
+      var id = index + 1
+
+      video.setAttribute('poster', `${this.path}/assets/images/${this.folder}/${this.src[id].poster}`);
 
       video.setAttribute('crossorigin', 'anonymous');
 
-      //video.setAttribute('src', `https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/videos/${this.width}/${this.src[index].video}`);
+      //video.setAttribute('src', `https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/videos/${this.width}/${this.src[id].video}`);
 
       /*
       // C ors is a pain
       https://github.com/minio/minio/issues/5748
       */
 
-      if (shaka.Player.isBrowserSupported()) {
+      if (this.app.isIos) { //this.app.isApp || 
 
-        this.initPlayer(video, `https://aus-video.s3-ap-southeast-2.amazonaws.com/ocean-pools/dash/${this.src[index].dash}`);
+        video.setAttribute('src', `https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/${this.width}/${this.src[id].video}`);
 
-      } else {  
+        video.load();
 
-        video.setAttribute('src', `https://aus-video.s3-ap-southeast-2.amazonaws.com/ocean-pools/hls/${this.src[index].hls}`);
+      } else {
+
+        if (shaka.Player.isBrowserSupported()) {
+
+          this.initPlayer(video, `https://aus-video.s3-ap-southeast-2.amazonaws.com/ocean-pools/dashing/${this.src[id].dash}`);
+
+        } else {  
+
+          //video.setAttribute('src', `https://aus-video.s3-ap-southeast-2.amazonaws.com/ocean-pools/hls/${this.src[id].hls}`);
+
+          video.setAttribute('src', `https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/${this.width}/${this.src[id].video}`);
+
+          video.load();
+
+        } 
 
       }
-
-      video.load();
-
 
     });
 

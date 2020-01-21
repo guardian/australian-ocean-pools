@@ -23,13 +23,15 @@ export class Preflight {
 
         this.settings.isMobile = this.mobileCheck()
 
-        this.settings.isApp = (window.location.origin === "file://" || window.location.origin === null) ? true : false ;
+        this.settings.app = {}
 
-        this.settings.isIos = this.ios()
+        this.settings.app.isApp = (window.location.origin === "file://" || window.location.origin === null) ? true : false ;
 
-        this.settings.isAndroidApp = (window.location.origin === "file://" || window.location.origin === null && /(android)/i.test(navigator.userAgent) ) ? true : false ;
+        this.settings.app.isIos = this.ios()
 
-        this.settings.isIosApp = (window.location.origin === "file://" || window.location.origin === null && self.settings.isIos) ? true : false ;
+        this.settings.app.isAndroidApp = (window.location.origin === "file://" || window.location.origin === null && /(android)/i.test(navigator.userAgent) ) ? true : false ;
+
+        this.settings.app.isIosApp = (window.location.origin === "file://" || window.location.origin === null && self.settings.isIos) ? true : false ;
 
         this.settings.localstore = this.localStorage()
 
