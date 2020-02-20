@@ -52,7 +52,9 @@ export default class videoInview {
 
         if (shaka.Player.isBrowserSupported()) {
 
-          this.initPlayer(video, `https://aus-video.s3-ap-southeast-2.amazonaws.com/ocean-pools/dashing/${this.src[id].dash}`);
+          this.initPlayer(video, `https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/dash/${this.src[id].dash}`);
+
+          console.log(`https://interactive.guim.co.uk/embed/aus/2020/ocean-pools/dash/${this.src[id].dash}`)
 
         } else {  
 
