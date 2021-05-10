@@ -59,7 +59,7 @@
     "gulp-sass": "^4.0.2",
     "handlebars": "^4.7.2",
     "leaflet": "^1.6.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mustache": "^2.3.0",
     "natives": "^1.1.6",
     "promise-polyfill": "^6.0.2",
